@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travtok.model.TravelDetail;
+import com.travtok.model.User;
 import com.travtok.repository.TravelDetailRepository;
+import com.travtok.repository.UserRepository;
 
 import jakarta.validation.Valid;
 
@@ -24,44 +26,81 @@ import jakarta.validation.Valid;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private TravelDetailRepository travelDetailRepository;
+	@Autowired
+	private TravelDetailRepository travelDetailRepository;
 
-    @PostMapping("/add-travel-detail")
-    public ResponseEntity<String> addTravelDetail(@Valid @RequestBody TravelDetail travelDetail) {
-        travelDetailRepository.save(travelDetail);
-        return new ResponseEntity<>("Travel Detail Created Successfully", HttpStatus.CREATED);
-    }
-    
-    @GetMapping("/all-travel-details")
-    public ResponseEntity<List<TravelDetail>> getAllTravelDetails() {
-        List<TravelDetail> travelDetails = travelDetailRepository.findAll();
-        return new ResponseEntity<>(travelDetails, HttpStatus.OK);
-    }
+	@Autowired
+	private UserRepository userRepository;
 
-    @PutMapping("/edit-price/{id}")
-    public ResponseEntity<String> editPriceById(@PathVariable Long id, @RequestBody TravelDetail travelDetail) {
-        Optional<TravelDetail> optionalTravelDetail = travelDetailRepository.findById(id);
-        if (optionalTravelDetail.isPresent()) {
-            TravelDetail existingTravelDetail = optionalTravelDetail.get();
-            existingTravelDetail.setPrice(travelDetail.getPrice());
-            travelDetailRepository.save(existingTravelDetail);
-            return new ResponseEntity<>("Price updated successfully", HttpStatus.OK);
+	// ---------------------------------------------------------------------------------------------------
+	// ---------------------------------------------------------------------------------------------------
+
+	@PostMapping("/add-travel-detail")
+	public ResponseEntity<String> addTravelDetail(@Valid @RequestBody TravelDetail travelDetail) {
+		travelDetailRepository.save(travelDetail);
+		return new ResponseEntity<>("Travel Detail Created Successfully", HttpStatus.CREATED);
+	}
+
+	@GetMapping("/all-travel-details")
+	public ResponseEntity<List<TravelDetail>> getAllTravelDetails() {
+		List<TravelDetail> travelDetails = travelDetailRepository.findAll();
+		return new ResponseEntity<>(travelDetails, HttpStatus.OK);
+	}
+
+	@PutMapping("/edit-price/{id}")
+	public ResponseEntity<String> editPriceById(@PathVariable Long id, @RequestBody TravelDetail travelDetail) {
+		Optional<TravelDetail> optionalTravelDetail = travelDetailRepository.findById(id);
+		if (optionalTravelDetail.isPresent()) {
+			TravelDetail existingTravelDetail = optionalTravelDetail.get();
+			existingTravelDetail.setPrice(travelDetail.getPrice());
+			travelDetailRepository.save(existingTravelDetail);
+			return new ResponseEntity<>("Price updated successfully", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Travel Detail not found", HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deleteTravelDetailById(@PathVariable Long id) {
+		Optional<TravelDetail> optionalTravelDetail = travelDetailRepository.findById(id);
+		if (optionalTravelDetail.isPresent()) {
+			travelDetailRepository.deleteById(id);
+			return new ResponseEntity<>("Travel Detail deleted successfully", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Travel Detail not found", HttpStatus.NOT_FOUND);
+		}
+	}
+
+//---------------------------------------------------------------------------------------------------
+
+	@GetMapping("/all-User")
+	public ResponseEntity<List<User>> getAllUser() {
+		List<User> user = userRepository.findAll();
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/DeleteUser/{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            userRepository.deleteById(id);
+            return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Travel Detail not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
     }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteTravelDetailById(@PathVariable Long id) {
-        Optional<TravelDetail> optionalTravelDetail = travelDetailRepository.findById(id);
-        if (optionalTravelDetail.isPresent()) {
-            travelDetailRepository.deleteById(id);
-            return new ResponseEntity<>("Travel Detail deleted successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Travel Detail not found", HttpStatus.NOT_FOUND);
-        }
-    }	
-    
-    
+	
+	
+	 @PutMapping("/make-admin/{id}")
+	    public ResponseEntity<String> makeUserAdmin(@PathVariable Long id) {
+	        Optional<User> optionalUser = userRepository.findById(id);
+	        if (optionalUser.isPresent()) {
+	            User user = optionalUser.get();
+	            user.setRole("admin"); // Assuming "admin" is the new role
+	            userRepository.save(user);
+	            return new ResponseEntity<>("User role updated to admin", HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+	        }
+	    }
 }
