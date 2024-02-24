@@ -1,6 +1,5 @@
 package com.travtok.configs;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,23 +16,21 @@ import com.travtok.utils.JwtAuthenticationFilter;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
-    @Autowired
-    private JwtAuthenticationFilter filter;
+	@Autowired
+	private JwtAuthenticationFilter filter;
 
-    @Bean
-    static public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	static public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) 
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest()
-                .permitAll()
-            )
-            .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-            .build();
-    }
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+		return httpSecurity.csrf(csrf -> csrf.disable())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+						.anyRequest().permitAll())
+				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class).build();
+	}
+
 }

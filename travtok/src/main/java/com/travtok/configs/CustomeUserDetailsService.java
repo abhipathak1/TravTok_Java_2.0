@@ -1,5 +1,6 @@
 
 package com.travtok.configs;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -18,21 +19,18 @@ import com.travtok.repository.UserRepository;
 @Service
 public class CustomeUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = userRepository.findByUsername(username);
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Optional<User> userOptional = userRepository.findByUsername(username);
 
-        User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+		User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 
-        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
+		List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                authorities
-        );
-    }
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				authorities);
+	}
 }
