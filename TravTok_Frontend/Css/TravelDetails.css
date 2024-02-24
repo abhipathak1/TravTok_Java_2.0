@@ -1,0 +1,706 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+button{
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+button:hover{
+    transform: scale3d(1.1, 1.1, 1);
+
+}
+
+
+
+#MainDiv {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid grey;
+    background-color: rgb(238, 238, 238);
+
+}
+
+.navbar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    color: #000;
+    padding: 0 50px;
+
+}
+
+
+.logo {
+    display: flex;
+    gap: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 3.5px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.logo img {
+    margin-top: 17px;
+    height: 35px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-bottom: 4px;
+    border-bottom: 4px solid transparent;
+    transition: border-bottom 0.5s ease-in-out;
+}
+
+.menu a:hover {
+    border-bottom-color: #000;
+}
+
+
+/* main body starts here  */
+#main {
+    width: 90%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#main hr {
+    margin-left: 0px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 500px;
+    left: 0;
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+
+
+.filters hr {
+    margin-top: 20px;
+    min-width: 400px;
+}
+
+/* price filter  */
+.pricefilter {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricefilter div {
+    display: flex;
+}
+
+.pricefilter p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+}
+
+.pricefilter div button {
+    margin-top: -20px;
+    height: 40px;
+    width: 200px;
+    margin-right: 20px;
+    border: none;
+    /* background-color: rgb(209, 208, 208); */
+    background-color: rgb(158, 186, 220);
+    color: #fff;
+    font-size: 22px;
+    border-radius: 20px;
+}
+
+.pricefilter div button:hover {
+    background-color: aliceblue;
+    color: cornflowerblue;
+}
+
+
+/* country filter starts here  */
+.country {
+    display: flex;
+    flex-direction: column;
+    margin-right: 80px;
+
+}
+
+.country p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+
+.country input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background-color: rgb(209, 208, 208);
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+    align-self: center;
+    margin-top: -10px;
+}
+
+.country input:hover {
+    background-color: aliceblue;
+    color: black;
+}
+
+.plan div {
+    max-width: 200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan p {
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.plan input {
+    margin-top: -10px;
+}
+
+.plan div p {
+    font-size: 16px;
+    margin-top: -20px;
+}
+
+
+/* .video-container {
+    position: absolute;
+    left: 0;
+    margin-top: 250px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.video-container video {
+    max-width: 550px;
+
+} */
+
+/* filterButtons */
+
+.filterButtons {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    top: 35px;
+    margin-left: 10px;
+}
+
+.filterButtons i {
+    display: block;
+    font-size: 30px;
+}
+
+#resetFilter {
+    height: 40px;
+    width: 100px;
+    border: none;
+    /* background-color: rgb(235, 43, 17); */
+    /* background-image: linear-gradient(to bottom, rgb(235, 43, 17), #916b6b); */
+    border: 2px solid red;
+    color: #f02f2f;
+    font-size: 22px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+#resetFilter:hover {
+    background-image: linear-gradient(to bottom, rgb(235, 43, 17), #916b6b);
+    color: #fff;
+    border: none;
+
+}
+
+/* mainSearch */
+
+.mainSearch {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.mainSearch input {
+    width: 88%;
+    height: 40px;
+    border: none;
+    background-color: rgb(209, 208, 208);
+    /* background-color: rgb(158, 186, 220);
+    color: #fff; */
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+    align-self: center;
+    margin-top: -10px;
+}
+
+.mainSearch input:hover {
+    background-color: aliceblue;
+    color: black;
+}
+
+
+/* display dom part  */
+.card_list {
+    display: flex;
+
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    min-width: 900px;
+    margin-left: 20px;
+}
+
+
+.images img {
+    min-width: 399px;
+    max-width: 400px;
+    min-height: 280px;
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.images img:hover {
+    transform: scale3d(1.1, 1.1, 1);
+}
+
+.name {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-top: 0px;
+    color: rgb(0, 0, 0);
+}
+
+
+.location {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    text-align: justify;
+}
+
+
+.price {
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: -10px;
+}
+
+.Time {
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.description {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-top: -15px;
+    text-align: justify;
+}
+
+.card {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+#Information {
+    padding-right: 10px;
+}
+
+
+#Information #button {
+    height: 40px;
+    width: 150px;
+    border: none;
+    /* background-color: rgb(209, 208, 208); */
+    background-color: rgb(158, 186, 220);
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+#Information #button:hover {
+    background-color: aliceblue;
+    color: cornflowerblue;
+}
+
+
+/* filterbySeason */
+.flitering {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.flitering p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+}
+
+.flitering div button {
+    margin-top: 20px;
+    height: 40px;
+    width: 200px;
+    margin-right: 20px;
+    border: none;
+    /* background-color: rgb(209, 208, 208); */
+    background-color: rgb(158, 186, 220);
+    color: #fff;
+    font-size: 22px;
+    border-radius: 20px;
+}
+
+.flitering div button:hover {
+    background-color: aliceblue;
+    color: cornflowerblue;
+}
+
+.pagination button {
+    margin-top: 20px;
+    height: 40px;
+    width: 80px;
+    margin-right: 20px;
+    border: none;
+    font-size: 22px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: grey;
+}
+
+.products .pagination {
+    width: 60%;
+    margin: auto;
+}
+
+
+/* footer */
+
+#mid-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-left: 76px;
+    margin-right: 76px;
+}
+
+#mid-footer img {
+    height: 30px;
+    margin-top: 40PX;
+    margin-right: 10px;
+}
+
+
+#main-footer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    margin-top: 50px;
+
+}
+
+#icons {
+    margin-top: 10px;
+    padding-bottom: 50px;
+}
+
+#icons img {
+    padding-left: 1px;
+}
+
+#footer-search input {
+    width: 200px;
+    height: 45px;
+    padding: 14px;
+    border: none;
+    border-bottom: 1px solid rgb(113, 188, 228);
+    font-size: 14px;
+}
+
+#footer p {
+    color: black;
+    letter-spacing: 1px;
+}
+
+#main-footer #footer-btn {
+    width: 100px;
+    height: 45px;
+    color: black;
+    border: none;
+    background-color: rgb(113, 188, 228);
+    ;
+    font-size: 14px;
+}
+
+#main-footer img {
+    width: 20px;
+}
+
+#main-footer p {
+    color: black;
+    font-size: 15px;
+    line-height: 1.3pc;
+}
+
+#main-footer h3 {
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 3.5px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+}
+
+
+#main-footer #footer-btn2 {
+    width: 150px;
+    height: 30px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #7ba1cd;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+#main-footer #footer-btn2:hover {
+    background-color: #3a77be;
+}
+
+
+
+
+
+
+/* back-to-top button */
+
+#back-to-topbtn img {
+    width: 30px;
+}
+
+#back-to-topbtn {
+    position: fixed;
+    bottom: 5%;
+    width: 75px;
+    right: 1%;
+    z-index: 99;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 10px black;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    padding: 20px;
+    transition: background-color 0.3s ease-out;
+}
+
+#back-to-topbtn:hover {
+    background-color: #eee;
+}
+
+
+
+/* BooknowDiv */
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 15% auto;
+    padding: 20px;
+    max-width: 400px;
+    width: 80%;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+
+tfoot h4 {
+    font-size: 20px;
+}
+
+table h4 {
+    font-size: 20px;
+}
+
+
+
+/* Button */
+.bt3 {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: rgb(158, 186, 220);
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-right: 40px;
+   
+    
+}
+
+.bt3:hover {
+    background-color: aliceblue;
+    color: cornflowerblue;
+}
+
+
+.close {
+    color: #aa1818;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.BooknowDivtitle {
+    font-size: 20px;
+}
+
+.q {
+    font-size: 20px;
+}
+
+.increment {
+    margin-left: 10px;
+    width: 25px;
+    height: 30px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #7ba1cd;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.decrement {
+    margin-right: 10px;
+    width: 25px;
+    height: 30px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #7ba1cd;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.decrement:hover{
+    background-color: aliceblue;
+    color: cornflowerblue;
+}
+
+.increment:hover{
+    background-color: aliceblue;
+    color: cornflowerblue;
+}
+/* Responsive */
+
+/* 
+@media only screen and (max-width: 900px) and (min-width: 1200px){
+    
+} */
+
+
+@media only screen and (max-width: 768px) {
+    .hide {
+        display: none;
+    }
+
+    #main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+    }
+
+    #Information {
+        text-align: justify;
+        width: 400px;
+    }
+
+    .container {
+        width: 500px;
+    }
+
+    #main-footer {
+        display: flex;
+        flex-direction: column;
+    }
+
+}

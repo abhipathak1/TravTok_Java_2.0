@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravTok</title>
+    <link rel="shortcut icon" href="/Images/ttlogo.png" type="jpeg/png">
+</head>
+
+<link rel="stylesheet" href="/Css/TravelDetails.css">
+
+<body>
+
+    <div id="MainDiv">
+        <div class="navbar">
+            <div class="logo">
+                <h1 class="indexRedirection">TravTok</h1>
+                <img src="/Images/ttlogo.png" alt="">
+            </div>
+            <div class="menu">
+                <a href="#" class="hide">About Us</a>
+                <a href="#" class="hide">Contact Us <i class="fa-solid fa-phone fa-flip"></i></a>
+                <a href="#" class="indexRedirection">Home <i class="fa-solid fa-house" style="color: black;"></i> </a>
+                <p style="font-size: xx-large;">|</p>
+                <a href="#" id="login_SignUpRedirection"><span style="color: rgb(105, 139, 164);">Sign Up</span></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="main">
+        <div class="filters">
+            <div class="pricefilter">
+                <p>Price</p>
+                <div>
+                    <button id="sort-low-to-high">Low to High</button>
+                    <button id="sort-high-to-low">High to Low</button>
+                </div>
+            </div>
+
+            <hr>
+            <div class="country">
+                <p>Search Any Location</p>
+                <input type="text" id="country" placeholder="Search any country name" required class="location">
+            </div>
+            <hr>
+
+            <div class="flitering">
+                <h1>Filter Based On Time</h1>
+                <div>
+                    <button id="button4">Seasons</button>
+                    <button id="button5">Days</button>
+                    <button id="button6">Daily</button>
+                </div>
+            </div>
+            <button id="resetFilter">Reset</button>
+
+
+            <!-- <div class="video-container">
+                <video
+                    src="https://cdn.dribbble.com/users/59947/screenshots/16454864/media/b2916efbb8d58796a243268ee0448828.mp4"
+                     autoplay loop>
+                    Your browser does not support the video tag.
+                </video>
+            </div> -->
+        </div>
+
+
+        <!-- <hr> -->
+        <div class="products">
+            <button class="filterButtons"><i class="fa-solid fa-bars-staggered"></i></button>
+            <div class="mainSearch">
+                <input type="text" id="country" placeholder="Search Place" required class="inputtext">
+            </div>
+
+            <div class="container">
+                <!-- append here  -->
+            </div>
+
+            <div class="pagination">
+                <!-- append pagination btns  -->
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close"><i class="fa-solid fa-xmark fa-fade"></i></span>
+            <h3>Travel Details</h3>
+            <table>
+                <thead class="card1">
+                    <td>
+                        <h4>Name</h4>
+                    </td>
+                    <td>
+                        <h4>No of person</h4>
+                    </td>
+                    
+                </thead>
+                <tbody class="cards">
+                    <!-- append -->
+                </tbody>
+                
+                <tfoot>
+                    <td>
+                        <h4>Total</h4>
+                    </td>
+                    
+                    <td>
+                        <h4 class="b"></h4>
+                    </td>
+                </tfoot>
+            </table>
+            <button class="bt3">Pay Now</button>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+
+    <div id="mid-footer">
+
+        <div class="img-fot">
+            <img src="https://www.koovs.com/cdn/shop/files/delivery-truck.png?v=1668332734&width=360" alt="">
+            <div>
+                <h3>Tour Guide</h3>
+                <p>Tour Packages of Seoul</p>
+            </div>
+        </div>
+        <div class="img-fot">
+            <img src="https://www.koovs.com/cdn/shop/files/money-back.png?v=1668332753&width=360" alt="">
+            <div>
+                <h3>Money Guarantee</h3>
+                <p>Within 30 days for an exchange</p>
+            </div>
+        </div>
+        <div class="img-fot">
+            <img src="https://www.koovs.com/cdn/shop/files/customer-care.png?v=1668332773&width=360" alt="">
+            <div>
+                <h3>Online Support</h3>
+                <p>10 AM-6 PM, Mon-Sat</p>
+            </div>
+        </div>
+        <div class="img-fot">
+            <img src="https://www.koovs.com/cdn/shop/files/credit-card.png?v=1668332788&width=360" alt="">
+            <h3>Flexible Payment</h3>
+        </div>
+    </div>
+
+
+    <div id="main-footer">
+        <div>
+            <div style="display: flex; gap: 8px;">
+                <h3>Travtok</h3>
+            </div>
+            <p>Seoul is a vibrant city that seamlessly blends traditional <br> Korean culture with modern technology.
+                From exploring <br> the historic Gyeongbokgung Palace to shopping in trendy <br> neighborhoods like
+                Gangnam and Hongdae, there's something <br> for everyone in this bustling metropolis.</p>
+        </div>
+        <div>
+            <h3>About us</h3>
+            <p>Extensive travel experience</p>
+            <p>Wide range of destinations</p>
+            <p>User-friendly platform</p>
+            <p>Personalized recommendations</p>
+        </div>
+        <div>
+            <h3>Our Services</h3>
+            <p>Travel insurance</p>
+            <p>Tour packages of Seoul</p>
+            <p>Hotel Booking</p>
+            <p>Tour Guide</p>
+            <p>24/7 customer support</p>
+            <br><br> <br> <br>
+        </div>
+        <div>
+            <h3>Connect With Us</h3>
+            <p>+91 8810**4001</p>
+            <p>abhipathak3537@gmail.com</p>
+            <br>
+            <p>Want To Explore Seoul <i class="fa-solid fa-arrow-down fa-bounce"></i></p>
+            <button id="footer-btn2">SIGN UP</button>
+        </div>
+
+        <div id="footer-search">
+            <div id="icons">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/128/3256/3256013.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/128/3938/3938026.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/128/3536/3536505.png" alt="">
+            </div>
+            <div>
+                <input type="number" placeholder="Enter Email">
+                <button id="footer-btn">Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- backToTopButton -->
+
+    <button id="back-to-topbtn">
+        <img src="https://cdn-icons-png.flaticon.com/128/2381/2381848.png">
+    </button>
+
+</body>
+<script src="https://kit.fontawesome.com/30a5a51570.js" crossorigin="anonymous"></script>
+<script src="/Java Script/TravelDetails.js"></script>
+
+</html>
