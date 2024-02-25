@@ -175,10 +175,17 @@ function creating(data) {
 
 
 function handleBookButtonClick(event) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("Please log in first");
+        window.location.href = "login_SignUp.html";
+        return;
+    }
     const travelDetailId = event.target.dataset.travelDetailId;
     localStorage.setItem("selectedTravelDetailId", travelDetailId);
     window.location.href = "payment.html";
 }
+
 
 
 // --------------------------------------------------------------------------------------------------------------
