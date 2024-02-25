@@ -192,14 +192,6 @@ function handleBookButtonClick(event) {
 // --------------------------------------------------------------------------------------------------------------
 
 
-// login_SignUpRedirection
-
-let login_SignUpRedirection = document.getElementById("login_SignUpRedirection");
-login_SignUpRedirection.addEventListener("click", () => {
-    location.href = "login_SignUp.html";
-})
-
-
 let resetFilter = document.getElementById("resetFilter")
 resetFilter.onclick = (e) => {
     appends(data2)
