@@ -1,5 +1,6 @@
 package com.travtok.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -110,6 +113,44 @@ public class UserController {
 	            } else {
 	                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Travel detail not found");
 	            }
+	        }
+	    }
+	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+	}
+	
+	
+	
+	@GetMapping("/my-bookings")
+	public ResponseEntity<List<Booking>> getUserBookings() {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        String username = authentication.getName();
+	        Optional<User> optionalUser = userRepository.findByUsername(username);
+
+	        if (optionalUser.isPresent()) {
+	            User user = optionalUser.get();
+	            List<Booking> bookings = bookingRepository.findByUser(user);
+	            return ResponseEntity.ok(bookings);
+	        }
+	    }
+	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	}
+
+	
+	@DeleteMapping("/cancel-booking/{bookingId}")
+	public ResponseEntity<String> cancelBooking(@PathVariable Long bookingId) {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        Optional<Booking> optionalBooking = bookingRepository.findById(bookingId);
+
+	        if (optionalBooking.isPresent()) {
+	            Booking booking = optionalBooking.get();
+	            bookingRepository.delete(booking);
+	            return ResponseEntity.ok("Booking canceled successfully");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Booking not found");
 	        }
 	    }
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
