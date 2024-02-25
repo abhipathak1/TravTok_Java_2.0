@@ -90,13 +90,13 @@ public class AdminController {
         }
     }
 	
-	
+
 	 @PutMapping("/make-admin/{id}")
 	    public ResponseEntity<String> makeUserAdmin(@PathVariable Long id) {
 	        Optional<User> optionalUser = userRepository.findById(id);
 	        if (optionalUser.isPresent()) {
 	            User user = optionalUser.get();
-	            user.setRole("admin"); // Assuming "admin" is the new role
+	            user.setRole("admin"); 
 	            userRepository.save(user);
 	            return new ResponseEntity<>("User role updated to admin", HttpStatus.OK);
 	        } else {
