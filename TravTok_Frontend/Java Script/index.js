@@ -109,41 +109,35 @@ login_SignUpRedirection.addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
-
 
 
 document.addEventListener("DOMContentLoaded", function() {
     const token = localStorage.getItem('token');
     const usernameDisplay = document.getElementById('usernameDisplay');
-    const logoutBtn = document.getElementById('logoutBtn');
+    const loginLogoutBtn = document.getElementById('loginLogoutBtn');
   
     if (token) {
-        // Token exists, decode it to get the username
         const decodedToken = parseJwt(token);
         const username = decodedToken.sub;
   
-        // Display the username in the dropdown content
         usernameDisplay.textContent = `Welcome, ${username}!`;
   
-        // Add event listener to the logout button
-        logoutBtn.addEventListener('click', function() {
-            // Remove token from local storage
+        loginLogoutBtn.textContent = 'Logout';
+        loginLogoutBtn.addEventListener('click', function() {
             localStorage.removeItem('token');
-            // Redirect user to login page or perform other cleanup tasks
-            // For example:
+            alert('You have been logged out successfully.');
             window.location.href = '/index.html';
         });
+    } else {
+        loginLogoutBtn.textContent = 'Login';
+        loginLogoutBtn.addEventListener('click', function() {
+            window.location.href = '/Html/login_SignUp.html';
+        });
     }
-  });
-  
+});
+
 
 // Function to parse JWT token
 function parseJwt(token) {
@@ -155,3 +149,23 @@ function parseJwt(token) {
 
     return JSON.parse(jsonPayload);
 }
+
+
+
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+
+
+// booking redirection
+
+
+let bookingsBtn = document.getElementById("bookingsBtn");
+
+bookingsBtn.addEventListener("click", () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please log in first');
+        return;
+    }
+    location.href = "/Html/booking.html";
+});

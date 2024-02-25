@@ -1,0 +1,320 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravTok - My Bookings</title>
+    <link rel="shortcut icon" href="/Images/ttlogo.png" type="image/png">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-xxx" crossorigin="anonymous" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        td img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .pagination-wrapper {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .logo {
+            float: left;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        #no-bookings-message {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #no-bookings-message img {
+            width: 200px;
+            height: auto;
+        }
+
+        #no-bookings-message p {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .book-now-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #45a049;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid #45a049;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .book-now-button:hover {
+            background-color: #359138;
+            border-color: #359138;
+        }
+
+        .book-now-button a {
+            font-size: large;
+            text-decoration: none;
+            color: rgb(240, 234, 234);
+        }
+
+        .cancel-booking-button {
+            padding: 8px 15px;
+            background-color: #ff4444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cancel-booking-button:hover {
+            background-color: #cc0000;
+        }
+
+
+
+
+        /* AlertCss */
+
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            border-radius: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            display: none;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from {
+                top: -50%;
+                opacity: 0;
+            }
+
+            to {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                top: 50%;
+                opacity: 1;
+            }
+
+            to {
+                top: -50%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="/index.html" class="logo">
+            <img src="/Images/ttlogo.png" alt="TravTok Logo"> <!-- Replace with actual logo image path -->
+            <span class="logo-text"></span>
+        </a>
+        <h1>My Bookings</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <!-- Data will be populated dynamically -->
+            </tbody>
+        </table>
+        <div id="no-bookings-message">
+            <img src="https://cdn.pixabay.com/animation/2023/07/28/08/59/08-59-29-692_512.gif"
+                alt="Booking Placeholder Image">
+            <p>Oops! Looks like you haven't booked anything yet.</p>
+            <button class="book-now-button"><a href="TravelDetails.html">Book Now</a></button>
+        </div>
+    </div>
+    <div id="alert" class="alert">Booking cancelled successfully.</div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+            fetchBookingsData();
+        });
+
+        async function fetchBookingsData() {
+            try {
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    console.error("Token not found in local storage");
+                    return;
+                }
+
+                let response = await fetch("http://localhost:8080/user/my-bookings", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    let bookings = await response.json();
+                    renderBookingsTable(bookings);
+                } else {
+                    console.error("Error fetching user bookings:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Error fetching user bookings:", error);
+            }
+        }
+
+        async function cancelBooking(bookingId) {
+            try {
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    console.error("Token not found in local storage");
+                    return;
+                }
+
+                let response = await fetch(`http://localhost:8080/user/cancel-booking/${bookingId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    fetchBookingsData();
+                    // alert('Booking cancelled successfully.');
+                    showFancyAlert();
+                } else {
+                    console.error("Error canceling booking:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Error canceling booking:", error);
+            }
+        }
+
+        function renderBookingsTable(bookings) {
+            const tbody = document.getElementById('tbody');
+            const noBookingsMessage = document.getElementById('no-bookings-message');
+            tbody.innerHTML = ''; // Clear existing rows
+            if (bookings.length === 0) {
+                noBookingsMessage.style.display = 'block';
+            } else {
+                noBookingsMessage.style.display = 'none';
+                bookings.forEach(booking => {
+                    const { travelDetail } = booking;
+                    const { title, images, location, open, price, id } = travelDetail;
+                    const row = `
+                        <tr>
+                            <td><img src="${images}" alt="Travel Image"></td>
+                            <td>${title}</td>
+                            <td>${location}</td>
+                            <td>${open}</td>
+                            <td>${price}$</td>
+                            <td><button class="cancel-booking-button" onclick="cancelBooking(${booking.id})">Cancel</button></td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            }
+        }
+
+
+        // alert js
+        function showFancyAlert() {
+            var alertBox = document.getElementById('alert');
+            alertBox.style.display = 'block';
+            setTimeout(function () {
+                alertBox.style.display = 'none';
+            }, 3000); 
+        }
+    </script>
+</body>
+
+</html> -->
