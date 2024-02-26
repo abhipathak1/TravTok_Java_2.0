@@ -67,7 +67,6 @@ The project includes the following components:
 
 - **Resources** (`src/main/resources/`): Contains application properties and configurations.
 
-- **Web Configuration** (`src/main/webapp/WEB-INF/`): Web configuration files.
 
 ## Setup Instructions
 
@@ -85,3 +84,10 @@ The project includes the following components:
 
 3. **Access the Application:**
    - Open a web browser and navigate to `http://localhost:8080` to access the application.
+
+
+
+Show your support
+Give a ⭐️ if you like this project!
+
+Thank you
