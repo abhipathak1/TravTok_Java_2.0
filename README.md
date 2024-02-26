@@ -1,6 +1,6 @@
 # TravTok - Your Ultimate Travel Companion
 
-TravTok is a user-friendly travel website designed to help users discover hidden gems around the world and embark on unforgettable adventures. Whether you're planning a dream vacation or seeking inspiration for your next trip, TravTok has you covered. This README provides an overview of the project structure, technologies used, and how to get started.
+TravTok is a user-friendly travel website designed to help users discover hidden gems around the world and embark on unforgettable adventures. Whether you're planning a dream vacation or seeking inspiration for your next trip.
 
 
 
