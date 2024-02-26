@@ -87,7 +87,6 @@ The project includes the following components:
 
 
 
-Show your support
-Give a ⭐️ if you like this project!
+If you find this project helpful or interesting, show your support by giving it a ⭐️ on GitHub!
 
-Thank you
+Thank you for using TravTok! 🌍✈️
