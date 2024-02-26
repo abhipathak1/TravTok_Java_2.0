@@ -80,7 +80,7 @@ The project includes the following components:
 
 2. **Build and Run the Application:**
    - Open the project in your preferred IDE.
-   - Build and run the application using Maven or Gradle.
+   - Build and run the application using Maven.
    - Alternatively, you can run the application using the command line:
      ```bash
      mvn spring-boot:run
