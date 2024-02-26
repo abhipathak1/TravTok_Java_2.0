@@ -2,7 +2,7 @@
 
 TravTok is a user-friendly travel website designed to help users discover hidden gems around the world and embark on unforgettable adventures. Whether you're planning a dream vacation or seeking inspiration for your next trip, TravTok has you covered. This README provides an overview of the project structure, technologies used, and how to get started.
 
-## Discover Things to Do in Seoul - Your Ultimate Guide
+
 
 <p align="center">
   <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=F75C7E&center=true&width=435&lines=TravTok;Things to Do in Seoul" alt="Typing SVG" /></a>
