@@ -4,6 +4,10 @@ TravTok is a user-friendly travel website designed to help users discover hidden
 
 ## Discover Things to Do in Seoul - Your Ultimate Guide
 
+<p align="center">
+  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=F75C7E&center=true&width=435&lines=TravTok;Things to Do in Seoul" alt="Typing SVG" /></a>
+</p>
+
 TravTok serves as a traveler's guide for exploring Seoul based on the theme 'Things to do in Seoul'. From iconic landmarks to off-the-beaten-path attractions, TravTok offers curated recommendations to make your Seoul experience truly memorable.
 
 ## Features
