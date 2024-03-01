@@ -31,6 +31,8 @@ TravTok serves as a traveler's guide for exploring Seoul based on the theme 'Thi
 - **Database:**
   - MySQL
 
+![TravTok_Java_2 0_Schema](https://github.com/abhipathak1/TravTok_Java_2.0/assets/123934582/4535613e-15ea-4ad4-a57e-d34030cccdfc)
+
 ## Project Structure
 
 The project includes the following components:
