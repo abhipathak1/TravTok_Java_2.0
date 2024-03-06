@@ -26,7 +26,6 @@ public class Booking {
 	private TravelDetail travelDetail;
 
 	public Booking() {
-		super();
 	}
 
 	public Booking(@NotNull(message = "User can't be null") User user,

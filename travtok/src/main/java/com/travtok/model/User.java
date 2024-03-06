@@ -41,7 +41,6 @@ public class User {
 	private List<Booking> bookings;
 
 	public User() {
-		super();
 	}
 
 	public User(@NotBlank(message = "Username can't be blank") String username,

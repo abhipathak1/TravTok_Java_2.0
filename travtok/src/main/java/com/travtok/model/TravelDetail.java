@@ -32,7 +32,6 @@ public class TravelDetail {
     private String price;
 
     public TravelDetail() {
-        super();
     }
 
     public TravelDetail(String title, String images, String location, String description, String open, String price) {
